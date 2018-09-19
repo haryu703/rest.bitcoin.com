@@ -5,8 +5,8 @@ const router = express.Router();
 const axios = require("axios");
 const RateLimit = require("express-rate-limit");
 
-const BITBOXCli = require("bitbox-cli/lib/bitbox-cli").default;
-const BITBOX = new BITBOXCli();
+//const BITBOXCli = require("bitbox-cli/lib/bitbox-cli").default;
+//const BITBOX = new BITBOXCli();
 
 const BitboxHTTP = axios.create({
   baseURL: process.env.RPC_BASEURL,
@@ -51,16 +51,16 @@ while (i < 12) {
   i++;
 }
 
-const requestConfig = {
-  method: "post",
-  auth: {
-    username: username,
-    password: password,
-  },
-  data: {
-    jsonrpc: "1.0",
-  },
-};
+//const requestConfig = {
+//  method: "post",
+//  auth: {
+//    username: username,
+//    password: password,
+//  },
+//  data: {
+//    jsonrpc: "1.0",
+//  },
+//};
 
 const whRequestConfig = {
   method: "post",
