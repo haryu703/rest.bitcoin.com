@@ -86,40 +86,39 @@ router.get("/decodeRawTransaction/:hex", config.rawTransactionsRateLimit2, (req,
       });
     }
     const result = [];
-    transactions = transactions.map(transaction => BitboxHTTP({
-        method: 'post',
+    transactions = transactions.map(transaction =>
+      BitboxHTTP({
+        method: "post",
         auth: {
           username: username,
-          password: password
+          password: password,
         },
         data: {
           jsonrpc: "1.0",
-          id:"decoderawtransaction",
+          id: "decoderawtransaction",
           method: "decoderawtransaction",
-          params: [
-            transaction
-          ]
-        }
-      })
-      .catch(error => {
+          params: [transaction],
+        },
+      }).catch(error => {
         try {
           return {
             data: {
-              result: error.response.data.error.message
-            }
+              result: error.response.data.error.message,
+            },
           };
         } catch (ex) {
           return {
             data: {
-              result: "unknown error"
-            }
+              result: "unknown error",
+            },
           };
         }
-      }));
+      })
+    );
     axios.all(transactions).then(
       axios.spread((...args) => {
         for (let i = 0; i < args.length; i++) {
-          let parsed = args[i].data.result;
+          const parsed = args[i].data.result;
           result.push(parsed);
         }
         res.json(result);
@@ -157,36 +156,35 @@ router.get("/decodeScript/:script", config.rawTransactionsRateLimit3, (req, res,
       });
     }
     const result = [];
-    scripts = scripts.map(script => BitboxHTTP({
-        method: 'post',
+    scripts = scripts.map(script =>
+      BitboxHTTP({
+        method: "post",
         auth: {
           username: username,
-          password: password
+          password: password,
         },
         data: {
           jsonrpc: "1.0",
-          id:"decodescript",
+          id: "decodescript",
           method: "decodescript",
-          params: [
-            script
-          ]
-        }
-      })
-      .catch(error => {
+          params: [script],
+        },
+      }).catch(error => {
         try {
           return {
             data: {
-              result: error.response.data.error.message
-            }
+              result: error.response.data.error.message,
+            },
           };
         } catch (ex) {
           return {
             data: {
-              result: "unknown error"
-            }
+              result: "unknown error",
+            },
           };
         }
-      }));
+      })
+    );
     axios.all(scripts).then(
       axios.spread((...args) => {
         for (let i = 0; i < args.length; i++) {
@@ -221,9 +219,7 @@ router.get("/decodeScript/:script", config.rawTransactionsRateLimit3, (req, res,
 
 router.get("/getRawTransaction/:txid", config.rawTransactionsRateLimit4, (req, res, next) => {
   let verbose = false;
-  if (req.query.verbose && req.query.verbose === 'true') 
-    verbose = true;
-  
+  if (req.query.verbose && req.query.verbose === "true") verbose = true;
 
   try {
     let txids = JSON.parse(req.params.txid);
@@ -233,37 +229,35 @@ router.get("/getRawTransaction/:txid", config.rawTransactionsRateLimit4, (req, r
       });
     }
     const result = [];
-    txids = txids.map(txid => BitboxHTTP({
-        method: 'post',
+    txids = txids.map(txid =>
+      BitboxHTTP({
+        method: "post",
         auth: {
           username: username,
-          password: password
+          password: password,
         },
         data: {
           jsonrpc: "1.0",
-          id:"getrawtransaction",
+          id: "getrawtransaction",
           method: "getrawtransaction",
-          params: [
-            txid,
-            verbose
-          ]
-        }
-      })
-      .catch(error => {
+          params: [txid, verbose],
+        },
+      }).catch(error => {
         try {
           return {
             data: {
-              result: error.response.data.error.message
-            }
+              result: error.response.data.error.message,
+            },
           };
         } catch (ex) {
           return {
             data: {
-              result: "unknown error"
-            }
+              result: "unknown error",
+            },
           };
         }
-      }));
+      })
+    );
     axios.all(txids).then(
       axios.spread((...args) => {
         for (let i = 0; i < args.length; i++) {
@@ -306,40 +300,39 @@ router.post("/sendRawTransaction/:hex", config.rawTransactionsRateLimit5, (req, 
     }
 
     const result = [];
-    transactions = transactions.map(transaction => BitboxHTTP({
-        method: 'post',
+    transactions = transactions.map(transaction =>
+      BitboxHTTP({
+        method: "post",
         auth: {
           username: username,
-          password: password
+          password: password,
         },
         data: {
           jsonrpc: "1.0",
-          id:"sendrawtransaction",
+          id: "sendrawtransaction",
           method: "sendrawtransaction",
-          params: [
-            transaction
-          ]
-        }
-      })
-      .catch(error => {
+          params: [transaction],
+        },
+      }).catch(error => {
         try {
           return {
             data: {
-              result: error.response.data.error.message
-            }
+              result: error.response.data.error.message,
+            },
           };
         } catch (ex) {
           return {
             data: {
-              result: "unknown error"
-            }
+              result: "unknown error",
+            },
           };
         }
-      }));
+      })
+    );
     axios.all(transactions).then(
       axios.spread((...args) => {
         for (let i = 0; i < args.length; i++) {
-          let parsed = args[i].data.result;
+          const parsed = args[i].data.result;
           result.push(parsed);
         }
         res.json(result);
@@ -372,15 +365,13 @@ router.post(
   "/change/:rawtx/:prevTxs/:destination/:fee",
   config.rawTransactionsRateLimit6,
   async (req, res, next) => {
-    let params = [
+    const params = [
       req.params.rawtx,
       JSON.parse(req.params.prevTxs),
       req.params.destination,
       parseFloat(req.params.fee),
     ];
-    if (req.query.position) 
-    params.push(parseInt(req.query.position));
-  
+    if (req.query.position) params.push(parseInt(req.query.position));
 
     whRequestConfig.data.id = "whc_createrawtx_change";
     whRequestConfig.data.method = "whc_createrawtx_change";
@@ -429,12 +420,8 @@ router.post(
   "/reference/:rawTx/:destination",
   config.rawTransactionsRateLimit9,
   async (req, res, next) => {
-  const params = [
-    req.params.rawTx,
-    req.params.destination
-    if (req.query.amount) 
-    params.push(req.query.amount);
-  
+    const params = [req.params.rawTx, req.params.destination];
+    if (req.query.amount) params.push(req.query.amount);
 
     whRequestConfig.data.id = "whc_createrawtx_reference";
     whRequestConfig.data.method = "whc_createrawtx_reference";
@@ -453,13 +440,10 @@ router.post(
   "/decodeTransaction/:rawTx",
   config.rawTransactionsRateLimit10,
   async (req, res, next) => {
-    let params = [req.params.rawTx];
-    if (req.query.prevTxs) 
-    params.push(JSON.parse(req.query.prevTxs));
-  
-    if (req.query.height) 
-    params.push(req.query.height);
-  
+    const params = [req.params.rawTx];
+    if (req.query.prevTxs) params.push(JSON.parse(req.query.prevTxs));
+
+    if (req.query.height) params.push(req.query.height);
 
     whRequestConfig.data.id = "whc_decodetransaction";
     whRequestConfig.data.method = "whc_decodetransaction";
@@ -478,17 +462,15 @@ router.post(
   "/create/:inputs/:outputs",
   config.rawTransactionsRateLimit11,
   async (req, res, next) => {
-    let params = [JSON.parse(req.params.inputs), JSON.parse(req.params.outputs)];
-    if (req.query.locktime) 
-    params.push(req.query.locktime);
-  
+    const params = [JSON.parse(req.params.inputs), JSON.parse(req.params.outputs)];
+    if (req.query.locktime) params.push(req.query.locktime);
 
     whRequestConfig.data.id = "createrawtransaction";
     whRequestConfig.data.method = "createrawtransaction";
     whRequestConfig.data.params = params;
 
     try {
-      let response = await WormholeHTTP(whRequestConfig);
+      const response = await WormholeHTTP(whRequestConfig);
       res.json(response.data.result);
     } catch (error) {
       res.status(500).send(error.response.data.error.message);
