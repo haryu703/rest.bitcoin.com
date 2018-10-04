@@ -5,6 +5,14 @@ const router = express.Router()
 const axios = require("axios")
 const RateLimit = require("express-rate-limit")
 
+// Used for error handling.
+const util = require("util")
+util.inspect.defaultOptions = {
+  showHidden: true,
+  colors: true,
+  depth: 1
+}
+
 //const WormholeHTTP = axios.create({
 //  baseURL: process.env.WORMHOLE_RPC_BASEURL,
 //});
@@ -99,7 +107,17 @@ router.get(
           res.json(parsed)
         })
         .catch(error => {
-          res.send(error.response.data.error.message)
+          res.status(500)
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.error
+          ) {
+            res.send(error.response.data.error)
+          } else {
+            const strErr = util.inspect(error)
+            return res.send(strErr)
+          }
         })
     }
   }
@@ -141,7 +159,17 @@ router.get(
           res.json(final)
         })
         .catch(error => {
-          res.send(error.response.data.error.message)
+          res.status(500)
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.error
+          ) {
+            res.send(error.response.data.error)
+          } else {
+            const strErr = util.inspect(error)
+            return res.send(strErr)
+          }
         })
     } catch (error) {
       axios
@@ -162,7 +190,17 @@ router.get(
           res.json(parsed)
         })
         .catch(error => {
-          res.send(error.response.data.error.message)
+          res.status(500)
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.error
+          ) {
+            res.send(error.response.data.error)
+          } else {
+            const strErr = util.inspect(error)
+            return res.send(strErr)
+          }
         })
     }
   }
@@ -204,7 +242,17 @@ router.get(
           res.json(final)
         })
         .catch(error => {
-          res.send(error.response.data.error.message)
+          res.status(500)
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.error
+          ) {
+            res.send(error.response.data.error)
+          } else {
+            const strErr = util.inspect(error)
+            return res.send(strErr)
+          }
         })
     } catch (error) {
       axios
@@ -225,7 +273,17 @@ router.get(
           res.json(unconfirmed)
         })
         .catch(error => {
-          res.send(error.response.data.error.message)
+          res.status(500)
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.error
+          ) {
+            res.send(error.response.data.error)
+          } else {
+            const strErr = util.inspect(error)
+            return res.send(strErr)
+          }
         })
     }
   }
@@ -255,7 +313,17 @@ router.get(
           res.json(response.data)
         })
         .catch(error => {
-          res.send(error.response.data.error.message)
+          res.status(500)
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.error
+          ) {
+            res.send(error.response.data.error)
+          } else {
+            const strErr = util.inspect(error)
+            return res.send(strErr)
+          }
         })
     } catch (error) {
       axios
@@ -269,7 +337,17 @@ router.get(
           res.json(response.data)
         })
         .catch(error => {
-          res.send(error.response.data.error.message)
+          res.status(500)
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.error
+          ) {
+            res.send(error.response.data.error)
+          } else {
+            const strErr = util.inspect(error)
+            return res.send(strErr)
+          }
         })
     }
   }
