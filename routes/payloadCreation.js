@@ -5,6 +5,14 @@ const router = express.Router()
 const axios = require("axios")
 const RateLimit = require("express-rate-limit")
 
+// Used for error handling.
+const util = require("util")
+util.inspect.defaultOptions = {
+  showHidden: true,
+  colors: true,
+  depth: 1
+}
+
 const BitboxHTTP = axios.create({
   baseURL: process.env.RPC_BASEURL
 })
@@ -127,9 +135,13 @@ router.post(
       const response = await BitboxHTTP(requestConfig)
       res.json(response.data.result)
     } catch (error) {
-      //res.status(500).send(error.response.data.error);
       res.status(500)
-      return res.send(error)
+      if (error.response && error.response.data && error.response.data.error) {
+        res.send(error.response.data.error)
+      } else {
+        const strErr = util.inspect(error)
+        return res.send(strErr)
+      }
     }
   }
 )
