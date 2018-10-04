@@ -81,7 +81,13 @@ router.get(
       const response = await BitboxHTTP(requestConfig)
       res.json(response.data.result)
     } catch (error) {
-      res.status(500).send(error.response.data.error)
+      res.status(500)
+      if (error.response && error.response.data && error.response.data.error) {
+        res.send(error.response.data.error)
+      } else {
+        const strErr = util.inspect(error)
+        return res.send(strErr)
+      }
     }
   }
 )
@@ -98,7 +104,13 @@ router.post(
       const response = await BitboxHTTP(requestConfig)
       res.json(response.data.result)
     } catch (error) {
-      res.status(500).send(error.response.data.error)
+      res.status(500)
+      if (error.response && error.response.data && error.response.data.error) {
+        res.send(error.response.data.error)
+      } else {
+        const strErr = util.inspect(error)
+        return res.send(strErr)
+      }
     }
   }
 )
@@ -115,7 +127,13 @@ router.post(
       const response = await BitboxHTTP(requestConfig)
       res.json(response.data.result)
     } catch (error) {
-      res.status(500).send(error.response.data.error)
+      res.status(500)
+      if (error.response && error.response.data && error.response.data.error) {
+        res.send(error.response.data.error)
+      } else {
+        const strErr = util.inspect(error)
+        return res.send(strErr)
+      }
     }
   }
 )
@@ -173,7 +191,13 @@ router.post(
       const response = await BitboxHTTP(requestConfig)
       res.json(response.data.result)
     } catch (error) {
-      res.status(500).send(error.response.data.error)
+      res.status(500)
+      if (error.response && error.response.data && error.response.data.error) {
+        res.send(error.response.data.error)
+      } else {
+        const strErr = util.inspect(error)
+        return res.send(strErr)
+      }
     }
   }
 )
@@ -200,7 +224,13 @@ router.post(
       const response = await BitboxHTTP(requestConfig)
       res.json(response.data.result)
     } catch (error) {
-      res.status(500).send(error.response.data.error)
+      res.status(500)
+      if (error.response && error.response.data && error.response.data.error) {
+        res.send(error.response.data.error)
+      } else {
+        const strErr = util.inspect(error)
+        return res.send(strErr)
+      }
     }
   }
 )
@@ -226,7 +256,13 @@ router.post(
       const response = await BitboxHTTP(requestConfig)
       res.json(response.data.result)
     } catch (error) {
-      res.status(500).send(error.response.data.error)
+      res.status(500)
+      if (error.response && error.response.data && error.response.data.error) {
+        res.send(error.response.data.error)
+      } else {
+        const strErr = util.inspect(error)
+        return res.send(strErr)
+      }
     }
   }
 )
@@ -243,7 +279,13 @@ router.post(
       const response = await BitboxHTTP(requestConfig)
       res.json(response.data.result)
     } catch (error) {
-      res.status(500).send(error.response.data.error)
+      res.status(500)
+      if (error.response && error.response.data && error.response.data.error) {
+        res.send(error.response.data.error)
+      } else {
+        const strErr = util.inspect(error)
+        return res.send(strErr)
+      }
     }
   }
 )
@@ -263,7 +305,13 @@ router.post(
       const response = await BitboxHTTP(requestConfig)
       res.json(response.data.result)
     } catch (error) {
-      res.status(500).send(error.response.data.error)
+      res.status(500)
+      if (error.response && error.response.data && error.response.data.error) {
+        res.send(error.response.data.error)
+      } else {
+        const strErr = util.inspect(error)
+        return res.send(strErr)
+      }
     }
   }
 )
@@ -280,7 +328,13 @@ router.post(
       const response = await BitboxHTTP(requestConfig)
       res.json(response.data.result)
     } catch (error) {
-      res.status(500).send(error.response.data.error)
+      res.status(500)
+      if (error.response && error.response.data && error.response.data.error) {
+        res.send(error.response.data.error)
+      } else {
+        const strErr = util.inspect(error)
+        return res.send(strErr)
+      }
     }
   }
 )
@@ -300,7 +354,13 @@ router.post(
       const response = await BitboxHTTP(requestConfig)
       res.json(response.data.result)
     } catch (error) {
-      res.status(500).send(error.response.data.error)
+      res.status(500)
+      if (error.response && error.response.data && error.response.data.error) {
+        res.send(error.response.data.error)
+      } else {
+        const strErr = util.inspect(error)
+        return res.send(strErr)
+      }
     }
   }
 )
@@ -321,7 +381,13 @@ router.post(
       const response = await BitboxHTTP(requestConfig)
       res.json(response.data.result)
     } catch (error) {
-      res.status(500).send(error.response.data.error)
+      res.status(500)
+      if (error.response && error.response.data && error.response.data.error) {
+        res.send(error.response.data.error)
+      } else {
+        const strErr = util.inspect(error)
+        return res.send(strErr)
+      }
     }
   }
 )
