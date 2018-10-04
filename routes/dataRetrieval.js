@@ -79,7 +79,10 @@ router.get(
       res.json(response.data.result)
     } catch (error) {
       console.log(error)
-      res.status(500).send(error.response.data.error)
+      res.status(500)
+      if (error.response && error.response.data && error.response.data.error)
+        res.send(error.response.data.error)
+      else res.send(error)
     }
   }
 )
