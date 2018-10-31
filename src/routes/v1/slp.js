@@ -61,7 +61,8 @@ router.get("/list", config.slpRateLimit2, async (req, res, next) => {
 
     const s = JSON.stringify(query)
     const b64 = Buffer.from(s).toString("base64")
-    const url = `https://bitdb.network/q/${b64}`
+    // const url = `https://bitdb.network/q/${b64}`
+    const url = `${process.env.BITDB_URL}q/${b64}`
     const header = {
       headers: { key: bitdbToken }
     }
@@ -93,7 +94,8 @@ router.get("/list/:tokenId", config.slpRateLimit3, async (req, res, next) => {
 
     const s = JSON.stringify(query)
     const b64 = Buffer.from(s).toString("base64")
-    const url = `https://bitdb.network/q/${b64}`
+    // const url = `https://bitdb.network/q/${b64}`
+    const url = `${process.env.BITDB_URL}q/${b64}`
     const header = {
       headers: { key: bitdbToken }
     }
@@ -150,7 +152,8 @@ router.get(
 
       const s = JSON.stringify(query)
       const b64 = Buffer.from(s).toString("base64")
-      const url = `https://bitdb.network/q/${b64}`
+      // const url = `https://bitdb.network/q/${b64}`
+      const url = `${process.env.BITDB_URL}q/${b64}`
       const header = {
         headers: { key: bitdbToken }
       }
